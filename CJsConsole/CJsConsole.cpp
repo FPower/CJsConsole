@@ -1,5 +1,5 @@
 // CJsConsole.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+//V0.1
 #include "pch.h"
 #include <iostream>
 #include <string>
@@ -10,9 +10,9 @@ int main()
 
 	std::string mine;
 	std::string option;
-	float price = 0;
+	float price;
 	int userchoice;
-	int quantity = 0;
+	int quantity;
 	int keepRunning;
 
 	//We only need to introduce the program once so it's outside the main loop
@@ -49,7 +49,7 @@ int main()
 			keepRunning = 0;
 		}
 		else {
-			keepRunning = 1;
+			keepRunning = 0;
 		}
 	}
 	//This stays until I'm done learning console apps
