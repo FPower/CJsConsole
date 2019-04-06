@@ -4,7 +4,11 @@
 #include <iostream>
 #include <string>
 #include <sstream>
+#include <array>
 
+//Establish our own namespace for learning purposes
+//Namespaces allow you to have for example learn::function
+//This makes the code clearer!
 namespace learn {
 	int calcPrice(int quantity, float price) {
 		price = quantity * price;
@@ -63,7 +67,8 @@ int main()
 		std::cout << "\n\n\t----------Menu----------\n";
 		std::cout << "\tPress 1 to use the price calculator\n";
 		std::cout << "\tPress 2 to use the factorial calculator\n";
-		std::cout << "\tPress the Any Key to exit\n";
+		std::cout << "\tPress 3 to see an array example.\n";
+		std::cout << "\tPress the Any Key to exit\n\t";
 		std::getline(std::cin, option);
 		std::stringstream(option) >> userchoice;
 		 
@@ -83,6 +88,24 @@ int main()
 		else if (userchoice == 2) {
 			learn::getLong("\tEnter the number that needs to be factorial-ed!\n", factorial);
 			std::cout << "\t" << learn::doFactorial(factorial) << "\n";
+			keepRunning = 1;
+		}
+		else if (userchoice == 3) {
+			//First example uses built in array system.
+			std::cout << "\n\tExample One \n";
+			int myarray[3] = { 10,20,30 };
+			for (int i = 0; i < 3; ++i) ++myarray[i];
+			for (int elem : myarray)
+				std::cout << "\t" << elem << '\n';
+
+			//second example will use <array> system
+			std::cout << "\n\tExample Two \n";
+			std::array<int, 3> cjarray{ 10,20,30 };
+
+			for (int i = 0; i < cjarray.size(); i++) ++cjarray[i];
+			for (int elem : cjarray)
+				std::cout << "\t" << elem << '\n';
+
 			keepRunning = 1;
 		}
 		//Everything else should terminate to the proper variable signaling the end of the program.
