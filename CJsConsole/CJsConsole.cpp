@@ -6,6 +6,13 @@
 #include <sstream>
 #include <array>
 
+
+//Use a structure to define our price and quantity multiplier
+struct priceCheck {
+	float price;
+	int quantity;
+} myprice;
+
 //Establish our own namespace for learning purposes
 //Namespaces allow you to have for example learn::function
 //This makes the code clearer!
@@ -68,21 +75,21 @@ int main()
 		std::cout << "\tPress 1 to use the price calculator\n";
 		std::cout << "\tPress 2 to use the factorial calculator\n";
 		std::cout << "\tPress 3 to see an array example.\n";
+		std::cout << "\tPress 4 to see an build an array with pointers.\n";
 		std::cout << "\tPress the Any Key to exit\n\t";
 		std::getline(std::cin, option);
 		std::stringstream(option) >> userchoice;
-		 
+
 
 		//Choice 1 introduces a program to calculate price times quantity of items.
 		if (userchoice == 1) {
 			//Ask user for price of product to calculate
-			learn::getNumber<float>("\t Enter Price: ", price);
-			learn::getNumber<int>("\t Enter Price: ", quantity);
-			
-			price = learn::calcPrice(quantity, price);
+			learn::getNumber<float>("\t Enter Price: ", myprice.price);
+			learn::getNumber<int>("\t Enter Price: ", myprice.quantity);
+			myprice.price = learn::calcPrice(myprice.quantity, myprice.price);
 			//Results printed
-			std::cout << "\tTotal price: " << price << std::endl;
-			
+			std::cout << "\tTotal price: " << myprice.price << std::endl;
+
 			keepRunning = 1;
 		}
 		else if (userchoice == 2) {
@@ -108,12 +115,36 @@ int main()
 
 			keepRunning = 1;
 		}
+		else if (userchoice == 4)
+		{
+			int i, n;
+			int * p;
+			std::cout << "How many?";
+			std::cin >> i;
+			p = new (std::nothrow) int[i];
+			if (p == nullptr)
+				std::cout << "Memory exception has occured";
+			else
+			{
+				for (n = 0; n < i; n++)
+				{
+					std::cout << "Enter number: ";
+					std::cin >> p[n];
+				}
+				std::cout << "You have entered: ";
+				for (n = 0; n < i; n++)
+					std::cout << p[n] << ", ";
+				delete[] p;
+			}
+			keepRunning = 1;
+		}
 		//Everything else should terminate to the proper variable signaling the end of the program.
 		else {
 			keepRunning = 0;
 		}
 	}
-	//This stays until I'm done learning console apps
+
+		//This stays until I'm done learning console apps
 		while (keepRunning != 0);
-	return 0;
+		return 0;
 }
